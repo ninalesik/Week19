@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опросник котиков</title>
+        <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/616/616596.png" type="image/svg">
+        <style>
+            body{
+                display: inline-block;
+            }
+            input:valid{
+        border: 1px solid blue;
+      }
+        </style>
+</head>
+<body>
+    <h1>Опросник котиков</h1>
+    <img src="https://apkshki.com/storage/5433/icon_5f3d69404188b_5433_w256.png" alt="Кот">
+</br>
+        <form action="php" method="post">
+<fieldset>
+<legend>Котик</legend>
+<label=for"name">Кличка питомца</label>
+    <div><input type="text" id="petname" 
+        required/></div>
+    <label=for"age">Возраст</label>
+        <div><input type="number" id="age" min="0" max="30" required/></div>
+                </fieldset>
+    
+<fieldset>
+<legend>Владелец</legend>
+    <div><input type="text" id="name" required/></div>
+    <label=for"fio">Фамилия</label>
+        <div><input type="text" id="surname" required/></div>
+    <label=for"phone">Номер телефона</label>
+        <div><input type="tel" id="phone" required /></div>
+        <label for="email">Электронная почта</label>
+            <div><input type="email" id="email" required/></div>
+</fieldset> <br>
+​<div><legend>Выберите породу котика</legend>
+<select required>
+<option disabled selected>Выберите породу</option>
+<option>Персидская</option>
+<option>Рэгдолл</option>
+<option>Ангорская</option>
+<option>Каракал</option>
+<option>Сиамская</option>
+<option>Норвежская лесная</option>
+<option>Сфинкс</option>
+<option>Мэй-кун</option>
+<option>Русская голубая</option>
+<option>Дворняжка</option>
+<option>Другое</option>
+​</select> 
+</div><br>
+​<label for="food">Чем питается котик</label> <br>
+<div><input type="checkbox" name="food" id="dry" />Сухой корм</div>
+<div><input type="checkbox" name="food" id="wed" />Влажный корм</div>
+<div><input type="checkbox" name="food" id="natural" />Натуральный корм</div>
+<div><input type="checkbox" name="food" id="mixed" />Смешанный тип</div> <br>
+<div> 
+<label for="sex">Укажите пол питомца</label> <br>
+Самец <input type="radio" name="sex" required/><br>
+Самка <input type="radio" name="sex" required /><br>
+</div>
+<br>
+​<div>
+<label for="comment">Комментарий</label> <br>
+<textarea rows="10" id="comment">Расскажите о вашем котике</textarea>
+</div>
+​<div>
+<legend>Прикрепите фотографию вашего котика</legend>
+<input type="file" required id="photo"/>
+</div>
+
+<br>
+<div> <button id="btn">Сохранить</button></div>
+<script>
+    class Cat{
+        constructor(petname, age, type, food, sex, comment){
+this.petname = petname;
+this.age = age;
+this.type = type;
+this.food = food;
+this.sex = sex;
+this.comment = comment;
+        }
+    }
+    const button = document.getElementById("btn");
+    button.addEventListener("click",getCat);
+
+        function getCat(e) {
+        e.preventDefault();
+        const petname = document.querySelector("#petname").value;
+        const age = document.querySelector("#age").value;
+        const type = document.querySelector("select");
+        const foodTypes = Array.from(document.querySelectorAll('input[name="food"]:cheked'));
+        const food = foodTypes.map((item)=>item.value);
+        const sex = document.querySelector('input[name="sex"]:checked').value;
+        const comment = document.querySelector('#comment').value;
+
+        }
+    const cat1 = new Cat (petname, age, type, food, sex, comment);
+    console.log(cat1);
+</script>
+</body>
+</html>
